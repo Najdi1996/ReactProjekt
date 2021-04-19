@@ -144,7 +144,7 @@ const EcosystemIcon = styled(PublicationsIcon)`
 `;
 
 const EntitiesIcon = styled(PublicationsIcon) ` 
-    background-image: url('./media/icons/entities2.svg');
+    background-image: url('./media/icons/entities.svg');
 `;
 
 

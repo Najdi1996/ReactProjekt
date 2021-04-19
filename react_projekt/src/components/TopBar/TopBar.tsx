@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
-
+import useDropdown from 'react-dropdown-hook';
 
 import { Wrapper } from '../styleHelpers/Components';
 import { Colors } from '../styleHelpers/Colors';
@@ -62,14 +62,40 @@ const RightIcons = styled.div `
     align-items: center;
 `;
 
+const LeftSide = styled.div `
+    align-items:center;
+    display: inline-flexbox;
+    justify-content: center;
+    margin: 10px;
+    padding: 4px;
+`;
+const MenuWrapper = styled.div `
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+
 export const TopBar: FC = () => {
+    
+    const [wrapperRef, dropdownOpen, toggleDropdown] = useDropdown();
+    const menuHandler = () => {
+        toggleDropdown();
+    }
     return(
         <Wrapper2>
             <InnerWrapper>
-                <LogoImg src= "./media/logo.png" />
-                   <div>
-                        Zrobie tu menu <ExpandedMenu />
-                    </div>
+            <LogoImg src= "./media/logo.png" />
+                   <MenuWrapper ref={wrapperRef}>
+                        <LeftSide onClick={menuHandler}>
+                           <img src="./media/icons/house2.png" alt="" />
+                           <span> Home </span>
+                       <img src="./media/icons/arrow-down.png" alt="" />
+                       </LeftSide>
+                       {dropdownOpen &&
+                            <ExpandedMenu />
+                       }
+                   </MenuWrapper>
                 <InputWrapper>
                     <CustomInput placeholder="Search Legalcluster" type = "text" />
                     <CustomImg src="./media/icons/search.png" alt="" title="" />
@@ -85,6 +111,7 @@ export const TopBar: FC = () => {
                 </RightIcons>
             </InnerWrapper>
         </Wrapper2>
+    
     );
 };
 
