@@ -2,117 +2,119 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 import { Colors } from '../styleHelpers/Colors';
+import { fontSize } from '../styleHelpers/FontSizes';
 
 const Wrapper = styled.div `
     position: absolute;
-    top: 24px;
-    left: 0;
+    top: 46px;
+    left: 300px;
     background: white;
     padding: 10px;
     border: 1px solid;
     ul {
-        border: 1px solid red;
+        border: 1px solid ${Colors.grey1};
     }
 `;
 const Wrapper2 = styled.aside ` 
-    flex: 3;
-    margin-right: 10px;
+    flex: 2;
+    margin-right: -23px;
 `;
 
-const Menu = styled.div ` 
+const Menu = styled.div `
+    background: ${Colors.white};
+    box-shadow: 1px 3px 5px 1px rgba(0,0,0,0.07);
+    border-radius: 4px;
+    width: 90%;
+    margin-left: 5px;
+    margin-top: 5px;
 `;
 
-const InputWrapper = styled.div ` 
+const InputWrapper = styled.div `
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
 `;
 
-const CustomInput = styled.div ` 
+const CustomInput = styled.input `
+    width: 90%;
+    border: 0px;
+    text-align: left;
+    margin-bottom: 5px;
+
+    &::placeholder{
+        color: #e0dcdc;
+        font-weight: bold;
+    }   
+`;
+
+const CustomImg = styled.img ` 
+    margin-right: 15px;
+        width: 15px;
+        height: 15px;
 `;
 
 const MenuList = styled.ul ` 
+    padding: 16px;
 `;
 
-const UserList = styled.ul ` 
+const UserList = styled.ul `
+    padding: 16px;
 `;
 
 const PlatformItem = styled.li`
     align-items:center;
     margin-bottom: 8px;
+    margin-top: 5px;
+    cursor: pointer;
 `;
 
 const WorkspacesItem = styled.li `
     align-items: center;
     margin-bottom: 8px;
+    margin-top: 5px;
+    cursor: pointer;
 `;
 
-const Link = styled.a `
-    margin: 10px;
-    color: ${Colors.black};
-    text-decoration: none;
-`;
-
-const HomeIcon = styled.i ` 
-    margin-right: 15px;
-    width: 8px;
-    height: 8px;
-    background-image: url('./media/icons/house2.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-`;
-
-const PublicationsIcon = styled(HomeIcon) `
-    background-image: url('./media/icons/publications.svg');
-`;
-
-const PeopleIcon = styled(HomeIcon) ` 
-    background-image: url('./media/icons/people.svg');
-`;
-
-const EntitiesIcon = styled(HomeIcon) `
-    background-image: url('./media/icons/entities.svg');
-`;
-
-const AdministrationIcon = styled(HomeIcon) `
-    background-image: url('./media/icons/administration.svg');
-`;
-
-const ClientContractIcon = styled.i `
-    margin-right: 15px;
-    width: 8px;
-    height: 8px;
-    background-image: url('.media/icons/publications.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-`;
-
-const SupplierContractIcon = styled(ClientContractIcon) ` 
-`;
-
-const CorporateIcon = styled(ClientContractIcon) ` 
-    background-image: url('.media/icons/entities.svg');
-`;
-
-const GroupNormsIcon = styled(ClientContractIcon) ` 
-`;
-
-const RealEstateContractsIcon = styled(ClientContractIcon) ` 
+const AccountItem = styled.li ` 
+    align-items: center;
+    margin-bottom: 8px;
+    margin-top: 5px;
+    cursor: pointer;
 `;
 
 const UserImg = styled.img ` 
 `;
 
-const Name = styled.div ` 
+const Name = styled.p `
+    color: ${Colors.black};
+    text-transform: capitalize;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 15px;
 `;
 
-const Description = styled.div ` 
+const Description = styled.p ` 
+    color: ${Colors.blue2};
+    font-size: ${fontSize[12]};
+    font-weight: 100;
+    margin-bottom: 5px;
 `;
 
-const PrivacyIcon = styled.i ` 
+
+const LogOutButton = styled.div ` 
+    margin-left: 25%;
+    font-size: ${fontSize[16]};
+    color: ${Colors.grey2};
+    cursor: pointer;
+    padding: 16px;
 `;
 
-const SettingsIcon = styled.i ` 
+const Scroll = styled.div `
+    overflow: scroll;
 `;
+
+
 
 
 
@@ -122,77 +124,43 @@ export const ExpandedMenu: FC = () => {
             <Wrapper2>
                 <Menu>
                     <InputWrapper>
-                        <CustomInput />
+                        <CustomInput placeholder="Filter...." type="text" />
                     </InputWrapper>
+                    <MenuList>
+                    <Scroll>
                     <span>Platform</span>
-                    <MenuList>
                         <PlatformItem>
-                            <li>
-                                <HomeIcon />
-                                <Link href="#">Home</Link>
-                            </li>
-                            <li>
-                                <PublicationsIcon />
-                                <Link href="#">Publications</Link>
-                            </li>
-                            <li>
-                                <PeopleIcon />
-                                <Link href="#">People</Link>
-                            </li>
-                            <li>
-                                <EntitiesIcon />
-                                <Link href="#">Entities</Link>
-                            </li>
-                            <li>
-                                <AdministrationIcon />
-                                <Link href="#">Administration</Link>
-                            </li>
+                            <li><CustomImg src="./media/icons/house2.png" alt=""></CustomImg>Home</li>
+                            <li><CustomImg src="./media/icons/publications.png" alt=""></CustomImg>Publications</li>
+                            <li><CustomImg src="./media/icons/people.png" alt=""></CustomImg>People</li>
+                            <li><CustomImg src="./media/icons/entities.png" alt=""></CustomImg>Entities</li>
+                            <li><CustomImg src="./media/icons/administration.png" alt=""></CustomImg>Administration</li>
                         </PlatformItem>
-                    </MenuList>
-                    <span>Workspaces</span>
-                    <MenuList>
+                        <span>Workspaces</span>
                         <WorkspacesItem>
-                           <li>
-                                <ClientContractIcon />
-                                <Link>Client contract</Link>
-                            </li>
-                            <li>
-                                <SupplierContractIcon />
-                                <Link>Supplier contract</Link>
-                            </li>
-                            <li>
-                                <CorporateIcon />
-                                <Link>Corporate</Link>
-                            </li>
-                            <li>
-                                <GroupNormsIcon />
-                                <Link>Group Norms</Link>
-                            </li>
-                            <li>
-                                <RealEstateContractsIcon />
-                                <Link>Real estate contracts</Link>    
-                            </li>     
+                            <li><CustomImg src="./media/icons/entities2.png" alt=""></CustomImg>Client contract</li>
+                            <li><CustomImg src="./media/icons/cog.png" alt=""></CustomImg>Supplier contract</li>
+                            <li><CustomImg src="./media/icons/entities2.png" alt=""></CustomImg>Corporate</li>
+                            <li><CustomImg src="./media/icons/network.png" alt=""></CustomImg>Group Norms</li>
+                            <li><CustomImg src="./media/icons/publications.png" alt=""></CustomImg>Real estate contracts</li>    
                         </WorkspacesItem>
+                        </Scroll>
                     </MenuList>
                     <UserList>
-                        <span>Account</span>
-                        <UserImg />
+                    <span>Account</span>
+                        <AccountItem>
+                            <UserImg />
                         <Name>Humberta Swift</Name>
                         <Description>See Profile</Description>
-                        <li>
-                            <PrivacyIcon />
-                            <Link>Privacy</Link>
-                        </li>
-                        <li>
-                            <SettingsIcon />
-                            <Link>Settings</Link>
-                        </li>
+                            <li><CustomImg src="./media/icons/privacy.png" alt=""></CustomImg>Privacy</li>
+                            <li><CustomImg src="./media/icons/settings.png" alt=""></CustomImg>Settings</li>
+                        </AccountItem>
                     </UserList>
+                    <LogOutButton>
+                        <CustomImg src="./media/icons/logout.png" alt=""></CustomImg><span>Logout</span>
+                    </LogOutButton>
                 </Menu>
             </Wrapper2> 
         </Wrapper>
     );
 };
-<ul>
-                <li>1</li>
-            </ul>
