@@ -119,6 +119,7 @@ const Scroll = styled.div `
 
 
 export const ExpandedMenu: FC = () => {
+    
     return(
         <Wrapper>
             <Wrapper2>

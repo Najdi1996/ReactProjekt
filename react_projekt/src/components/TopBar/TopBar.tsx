@@ -74,7 +74,12 @@ const MenuWrapper = styled.div `
     align-items: center;
     justify-content: center;
 `;
-
+const ImgMenu = styled.div ` 
+    margin-left: 50px;
+`;
+const ImgHouse = styled.div ` 
+    margin-right: 20px;
+`;
 
 export const TopBar: FC = () => {
     
@@ -87,10 +92,17 @@ export const TopBar: FC = () => {
             <InnerWrapper>
             <LogoImg src= "./media/logo.png" />
                    <MenuWrapper ref={wrapperRef}>
+                       
                         <LeftSide onClick={menuHandler}>
+                        
+                            <ImgHouse>
                            <img src="./media/icons/house2.png" alt="" />
+                           </ImgHouse>
                            <span> Home </span>
+                           <ImgMenu>
                        <img src="./media/icons/arrow-down.png" alt="" />
+                     
+                            </ImgMenu>
                        </LeftSide>
                        {dropdownOpen &&
                             <ExpandedMenu />

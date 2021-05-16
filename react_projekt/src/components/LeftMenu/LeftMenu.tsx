@@ -13,7 +13,7 @@ const Wrapper = styled.aside `
     background: ${Colors.white};
     box-shadow: 1px 3px 5px 1px rgba(0,0,0,0.07);
     border-radius: 4px;
-    width: 20%;
+    width: 250px;
     margin-left: 30px;
     margin-top: 15px;
 `;
@@ -108,6 +108,7 @@ const CardButtonNetwork = styled.button `
 
 const CardButtonPublications = styled(CardButtonNetwork) ` 
     background-image: url('./media/icons/plus.svg');
+    margin-left: 40px;
 `;
 
 const Navigator = styled.nav ` 
