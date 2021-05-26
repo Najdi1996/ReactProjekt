@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Colors } from '../styleHelpers/Colors';
 import { fontSize } from '../styleHelpers/FontSizes';
 
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.aside `
     flex:2;
@@ -124,7 +125,7 @@ const ListItem = styled.li `
     margin-bottom: 16px;
 `;
 
-const Link = styled.a `
+const Link1 = styled.a `
     margin: 10px;
     color: ${Colors.black};
     text-decoration: none;
@@ -147,6 +148,11 @@ const EcosystemIcon = styled(PublicationsIcon)`
 const EntitiesIcon = styled(PublicationsIcon) ` 
     background-image: url('./media/icons/entities.svg');
 `;
+const Link2 = styled(Link) `
+    text-decoration:none;
+    color: ${Colors.MenuColors};
+`;
+
 
 
 
@@ -156,24 +162,36 @@ export const LeftMenu: FC = () => {
                 <User>
                     <Header>
                         <ImageCard>
+                            <Link2 to="/Profile">
                             <Image />
+                            </Link2>
                         </ImageCard>
+                        <Link2 to="/Profile">
                         <Name>Humberta Swift</Name>
+                        </Link2>
                         <Decription>Job title - Company</Decription>
                     </Header>
                     <UserList>
                         <Item>
                             <UserItemLinkContainer>
                                 <CardIconNetwork />
+                                <Link2 to="/Your Network">
                                 <UserItemLink href="#">Your Network</UserItemLink>
+                                </Link2>
                             </UserItemLinkContainer>
+                            <Link2 to="/Your Network">
                             <CardButtonNetwork />
+                            </Link2>
                         </Item>
                         <Item>
                             <UserItemLinkContainer>
                                 <CardIconPublications/>
+                                <Link2 to="/Your Publications">
                                 <UserItemLink href="#">Your Publications</UserItemLink>
+                                </Link2>
+                                <Link2 to="/Your Publications">
                                 <CardButtonPublications />
+                                </Link2>
                             </UserItemLinkContainer>
                         </Item>
                     </UserList>
@@ -182,15 +200,21 @@ export const LeftMenu: FC = () => {
                     <List>
                         <ListItem>
                             <PublicationsIcon />
-                            <Link href = '#'>Publications</Link>
+                            <Link2 to="/Publications">
+                            <Link1 href = '#'>Publications</Link1>
+                            </Link2>
                         </ListItem>
                         <ListItem>
                             <EcosystemIcon />
-                            <Link href = '#'>Ecosystem</Link>
+                                <Link2 to="/Ecosystem">
+                                <Link1 href = '#'>Ecosystem</Link1>
+                            </Link2>
                         </ListItem>
                         <ListItem>
                             <EntitiesIcon />
-                            <Link href = '#'>Entities</Link>
+                            <Link2 to="/Entities">
+                            <Link1 href = '#'>Entities</Link1>
+                            </Link2>
                         </ListItem>
                     </List>
                 </Navigator>

@@ -6,6 +6,7 @@ import { Wrapper } from '../styleHelpers/Components';
 import { Colors } from '../styleHelpers/Colors';
 import { ExpandedMenu } from './ExpendedMenu';
 
+import { Link } from "react-router-dom";
 
 const Wrapper2 = styled(Wrapper)`
     padding: 4px;
@@ -23,6 +24,11 @@ const InnerWrapper = styled.div `
 
 const LogoImg = styled.img`
     width: 35px;
+`;
+
+const CustomLink = styled(Link) `
+    text-decoration:none;
+    color: ${Colors.MenuColors};
 `;
 
 const ImgBackground = styled.div<{showBg: boolean}>`
@@ -90,7 +96,9 @@ export const TopBar: FC = () => {
     return(
         <Wrapper2>
             <InnerWrapper>
+                <CustomLink to='/Home'>
             <LogoImg src= "./media/logo.png" />
+                </CustomLink>
                    <MenuWrapper ref={wrapperRef}>
                        
                         <LeftSide onClick={menuHandler}>
@@ -113,7 +121,9 @@ export const TopBar: FC = () => {
                     <CustomImg src="./media/icons/search.png" alt="" title="" />
                 </InputWrapper>
                 <RightIcons>
+                    <CustomLink to='/Home'>
                     <CustomImg src="./media/icons/house.png" />
+                    </CustomLink>
                     <ImgBackground showBg>
                         <CustomImg src="./media/icons/comments.png" />
                     </ImgBackground>

@@ -18,57 +18,81 @@ const WorkSpaceWrapper = styled.div `
 const WorkSpaceCard = styled.div `
     margin-right: 20px;
     border-radius: 5px;
-    display: flex;
-    width: 100%;
     box-shadow: 0px 1px 3px ${Colors.grey2};
-    padding: 20px;
+    padding: 0px;
+    width: 350px;
+    height: 250px;
+`;
+
+const WorkSpaceCardTop = styled.div `
+    height: 120px;
+    width: 100%;
+    background-image: url('./media/WorkSpaces.jpg');
+    background-size: cover;
+    background-position: center;
+`;
+
+const WorkSpaceCardCenter = styled.div `
+    width:100%;
+    height: 70px;
+    display:flex;
+`;
+
+const WorkSpaceCardCenterLeft = styled.div ` 
+    width:40%;
+    display: flex;
 
     div {
+        width: 70%;
+        background-color: white;
+        box-shadow: 0 0 5px 1px #dfdfdf;
+        height: 100px;
+        position: relative;
+        top: -30px;
+        text-align: bottom;
         display: flex;
-        border: 2px solid red;
-        box-sizing:border-box;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        border-radius: 2px;
     }
 `;
 
-const ImgWorkSpace = styled.img `
-    background-size: cover;
-    width: 100px;
-    height: 100px;
-`;
-
-const Card = styled.div `
-    display: table-cell;
-    position: relative;
-    padding: 10px;
-    width: 100%;
-`;
-
-const CardTitle = styled.p `
-    color: ${Colors.black};
+const WorkSpaceCardCenterRight = styled.div ` 
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
 `;
 
-const CardBottom = styled.div `
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
+const WorkSpaceCardBottom = styled.div ` 
+    width:100%;
+    height:60px;
+    margin-top: 10px;
 `;
 
 const CardIcon = styled.img `
     width: 15px;
     vertical-align: middle;
     margin: 0px 5px;
+    
+    
 `;
 
+
 const CardIcon2 = styled.img ` 
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin: 0px 5px;
     
 `;
 
 const Cardfooter = styled.h1 ` 
-    margin-top: 5px;  
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 15px;
+    color: ${Colors.grey2};  
 `;
 
 export const WorkSpace: FC = () => {
@@ -77,44 +101,61 @@ export const WorkSpace: FC = () => {
             <WorkSpaceTitle>Workspaces</WorkSpaceTitle>
             <WorkSpaceWrapper>
                 <WorkSpaceCard>
-                    <ImgWorkSpace src = "./media/WorkSpaces.jpg" alt = ""/>
-                    <Card>
-                        <CardTitle>Client contact</CardTitle>
-                        <CardBottom>
-                            <p>
-                            <CardIcon src="./media/icons/entities2.svg" alt=""/> Contact
-                            <CardIcon src="./media/icons/user-plus.svg" alt = ""/> 150 user
-                            </p>
-                            
-                              <Cardfooter>Last update 2 days ago</Cardfooter>  
-                            
-                        </CardBottom>
-                    </Card>
-                </WorkSpaceCard>
-                <WorkSpaceCard>
-                    <div className="WorkspacesBox">
-                        <div className="Up"><ImgWorkSpace src = "./media/WorkSpaces.jpg" alt = ""/></div>
-                        <div className="Center">
-                            <div className="CenterLeft">
-                                <CardIcon2 src="./media/icons/cog.png" alt =""/>
-                            </div>
-                            <div className="CenterRight">
-                            <CardTitle>Client contact</CardTitle>
-                            </div>
-                        </div>
-                        <div className="Bottom">
-                            <div className="BottomUp">
-                                <p>
+                   <WorkSpaceCardTop />
+                   <WorkSpaceCardCenter>
+                       <WorkSpaceCardCenterLeft>
+                           <div> <CardIcon2 src = "./media/icons/entities2.png"/></div>
+                       </WorkSpaceCardCenterLeft>
+                       <WorkSpaceCardCenterRight>
+                            <span>Client Contract</span>
+                       </WorkSpaceCardCenterRight>
+                   </WorkSpaceCardCenter>
+                   <WorkSpaceCardBottom>
+                        <p>
                                 <CardIcon src="./media/icons/entities2.svg" alt=""/> Contact
                                 <CardIcon src="./media/icons/kropka.png" alt = ""/>
-                                <CardIcon src="./media/icons/user-plus.svg" alt = ""/> 150 user  
-                                </p>
-                            </div>
-                            <div className="BottomDown">
-                                <Cardfooter>Last update 2 days ago</Cardfooter> 
-                            </div>
-                        </div>
-                    </div>
+                                <CardIcon src="./media/icons/user-plus.svg" alt = ""/> 150 users
+                        </p>
+                        <Cardfooter>Last update 2 days ago</Cardfooter>
+                   </WorkSpaceCardBottom>
+                </WorkSpaceCard>
+                <WorkSpaceCard>
+                   <WorkSpaceCardTop />
+                   <WorkSpaceCardCenter>
+                       <WorkSpaceCardCenterLeft>
+                           <div> <CardIcon2 src = "./media/icons/cog.png"/></div>
+                       </WorkSpaceCardCenterLeft>
+                       <WorkSpaceCardCenterRight>
+                            <span>Supplier Contract</span>
+                       </WorkSpaceCardCenterRight>
+                   </WorkSpaceCardCenter>
+                   <WorkSpaceCardBottom>
+                        <p>
+                                <CardIcon src="./media/icons/entities2.svg" alt=""/> Contact
+                                <CardIcon src="./media/icons/kropka.png" alt = ""/>
+                                <CardIcon src="./media/icons/user-plus.svg" alt = ""/> 25 users
+                        </p>
+                        <Cardfooter>Last update 2 days ago</Cardfooter>
+                   </WorkSpaceCardBottom>
+                </WorkSpaceCard>
+                <WorkSpaceCard>
+                   <WorkSpaceCardTop />
+                   <WorkSpaceCardCenter>
+                       <WorkSpaceCardCenterLeft>
+                           <div> <CardIcon2 src = "./media/icons/entities2.png"/></div>
+                       </WorkSpaceCardCenterLeft>
+                       <WorkSpaceCardCenterRight>
+                            <span>Corporate</span>
+                       </WorkSpaceCardCenterRight>
+                   </WorkSpaceCardCenter>
+                   <WorkSpaceCardBottom>
+                        <p>
+                                <CardIcon src="./media/icons/entities2.svg" alt=""/> Corporate
+                                <CardIcon src="./media/icons/kropka.png" alt = ""/>
+                                <CardIcon src="./media/icons/user-plus.svg" alt = ""/> 25 users
+                        </p>
+                        <Cardfooter>Last update 2 days ago</Cardfooter>
+                   </WorkSpaceCardBottom>
                 </WorkSpaceCard>
             </WorkSpaceWrapper>
         </WorkSpaceContent>

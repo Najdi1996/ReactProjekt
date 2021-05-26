@@ -4,5 +4,6 @@ export const Colors = {
     grey1: '#DDD',
     grey2: '#808080',
     blue: '#0000FF',
-    blue2: '#0033CC'
+    blue2: '#0033CC' ,
+    MenuColors : '#4b5268'
 }

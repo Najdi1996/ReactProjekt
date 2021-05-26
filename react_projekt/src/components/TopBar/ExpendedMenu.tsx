@@ -1,8 +1,10 @@
-import { FC } from 'react';
+import { ChangeEvent, FC , useState } from 'react';
 import styled from 'styled-components';
 
 import { Colors } from '../styleHelpers/Colors';
 import { fontSize } from '../styleHelpers/FontSizes';
+
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div `
     position: absolute;
@@ -11,6 +13,7 @@ const Wrapper = styled.div `
     background: white;
     padding: 10px;
     border: 1px solid;
+    z-index: 999;
     ul {
         border: 1px solid ${Colors.grey1};
     }
@@ -48,6 +51,11 @@ const CustomInput = styled.input `
     }   
 `;
 
+const CustomLink = styled(Link) ` 
+    text-decoration:none;
+    color: ${Colors.MenuColors};
+`;
+
 const CustomImg = styled.img ` 
     margin-right: 15px;
         width: 15px;
@@ -67,6 +75,18 @@ const PlatformItem = styled.li`
     margin-bottom: 8px;
     margin-top: 5px;
     cursor: pointer;
+`;
+
+const ListElementTitle = styled.div `
+    display:flex;
+`;
+
+const Title = styled.span `
+    font-size:${fontSize[18]};
+    color:${Colors.grey1};
+    text-align: left;
+    margin-left:6px;
+    margin-bottom:3px;   
 `;
 
 const WorkspacesItem = styled.li `
@@ -100,14 +120,15 @@ const Description = styled.p `
     font-weight: 100;
     margin-bottom: 5px;
 `;
+const Logout = styled.span `
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+`;
 
-
-const LogOutButton = styled.div ` 
-    margin-left: 25%;
-    font-size: ${fontSize[16]};
-    color: ${Colors.grey2};
-    cursor: pointer;
-    padding: 16px;
+const ListLogout = styled.div `
+    height: 35px;
 `;
 
 const Scroll = styled.div `
@@ -119,48 +140,134 @@ const Scroll = styled.div `
 
 
 export const ExpandedMenu: FC = () => {
+
+    const [inputText, setInputText] = useState<string>('');
+
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const text = e.target.value;
+        setInputText(text);
+    }
     
     return(
         <Wrapper>
             <Wrapper2>
                 <Menu>
                     <InputWrapper>
-                        <CustomInput placeholder="Filter...." type="text" />
+                        <CustomInput placeholder="Filter...." type="text" value={inputText} onChange={inputHandler} />
                     </InputWrapper>
                     <MenuList>
                     <Scroll>
-                    <span>Platform</span>
+                    {'Platform'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <ListElementTitle>
+                            <Title>Platform</Title>
+                        </ListElementTitle>
+                        }
                         <PlatformItem>
-                            <li><CustomImg src="./media/icons/house2.png" alt=""></CustomImg>Home</li>
-                            <li><CustomImg src="./media/icons/publications.png" alt=""></CustomImg>Publications</li>
-                            <li><CustomImg src="./media/icons/people.png" alt=""></CustomImg>People</li>
-                            <li><CustomImg src="./media/icons/entities.png" alt=""></CustomImg>Entities</li>
-                            <li><CustomImg src="./media/icons/administration.png" alt=""></CustomImg>Administration</li>
+                            {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
+                            <CustomLink to="/Home">
+                                <li><CustomImg src="./media/icons/house2.png" alt=""></CustomImg>Home</li>
+                            </CustomLink>
+                            }
+
+                            {'Publications'.toLowerCase().includes(inputText.toLowerCase()) &&
+                            <CustomLink to="/Publications">
+                                <li><CustomImg src="./media/icons/publications.png" alt=""></CustomImg>Publications</li>
+                            </CustomLink>
+                            }
+
+                            {'People'.toLowerCase().includes(inputText.toLowerCase()) &&   
+                            <CustomLink to="/People">
+                                <li><CustomImg src="./media/icons/people.png" alt=""></CustomImg>People</li>
+                            </CustomLink>
+                            }
+
+                            {'Entities'.toLowerCase().includes(inputText.toLowerCase()) &&
+                            <CustomLink to="/Entities">
+                                <li><CustomImg src="./media/icons/entities.png" alt=""></CustomImg>Entities</li>
+                            </CustomLink>
+                            }
+
+                            {'Administration'.toLowerCase().includes(inputText.toLowerCase()) &&
+                            <CustomLink to="/Administration">
+                                <li><CustomImg src="./media/icons/administration.png" alt=""></CustomImg>Administration</li>
+                            </CustomLink>
+                            }
                         </PlatformItem>
-                        <span>Workspaces</span>
+                        {'Workspaces'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <ListElementTitle>
+                            <Title>Workspaces</Title>
+                        </ListElementTitle>
+                        }
                         <WorkspacesItem>
-                            <li><CustomImg src="./media/icons/entities2.png" alt=""></CustomImg>Client contract</li>
-                            <li><CustomImg src="./media/icons/cog.png" alt=""></CustomImg>Supplier contract</li>
-                            <li><CustomImg src="./media/icons/entities2.png" alt=""></CustomImg>Corporate</li>
-                            <li><CustomImg src="./media/icons/network.png" alt=""></CustomImg>Group Norms</li>
-                            <li><CustomImg src="./media/icons/publications.png" alt=""></CustomImg>Real estate contracts</li>    
+                            {'Client contract'.toLowerCase().includes(inputText.toLowerCase()) &&
+                            <CustomLink to="/Client contract">
+                                <li><CustomImg src="./media/icons/entities2.png" alt=""></CustomImg>Client contract</li>
+                            </CustomLink>
+                            }
+
+                            {'Supplier contract'.toLowerCase().includes(inputText.toLowerCase()) &&
+                           <CustomLink to="/Supplier contract">
+                                <li><CustomImg src="./media/icons/cog.png" alt=""></CustomImg>Supplier contract</li>
+                            </CustomLink>
+                            }
+
+                            {'Corporate'.toLowerCase().includes(inputText.toLowerCase()) &&
+                            <CustomLink to="/Corporate">
+                                <li><CustomImg src="./media/icons/entities2.png" alt=""></CustomImg>Corporate</li>
+                            </CustomLink>
+                            }
+
+                            {'Group Norms'.toLowerCase().includes(inputText.toLowerCase()) &&
+                            <CustomLink to="/Group Norms">
+                                <li><CustomImg src="./media/icons/network.png" alt=""></CustomImg>Group Norms</li>
+                            </CustomLink>
+                            }
+
+                            {'Real estate contracts'.toLowerCase().includes(inputText.toLowerCase()) &&
+                            <CustomLink to="/Real estate contracts">
+                                <li><CustomImg src="./media/icons/publications.png" alt=""></CustomImg>Real estate contracts</li>
+                            </CustomLink>
+                            }    
                         </WorkspacesItem>
                         </Scroll>
                     </MenuList>
                     <UserList>
-                    <span>Account</span>
+                    {'Account'.toLowerCase().includes(inputText.toLowerCase()) &&
+                    <ListElementTitle>
+                        <Title>Account</Title>
+                    </ListElementTitle>
+                    }
                         <AccountItem>
+                        {'See Profile'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <CustomLink to="/Profile">
                             <UserImg />
-                        <Name>Humberta Swift</Name>
-                        <Description>See Profile</Description>
-                            <li><CustomImg src="./media/icons/privacy.png" alt=""></CustomImg>Privacy</li>
+                            <Name>Humberta Swift</Name>
+                            <Description>See Profile</Description>
+                        </CustomLink>
+                        }
+
+                        {'Privacy'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <CustomLink to="/Privacy">
+                                <li><CustomImg src="./media/icons/privacy.png" alt=""></CustomImg>Privacy</li>
+                        </CustomLink>
+                        }
+
+                        {'Settings'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <CustomLink to="/Settings">
                             <li><CustomImg src="./media/icons/settings.png" alt=""></CustomImg>Settings</li>
+                        </CustomLink>
+                        }
                         </AccountItem>
                     </UserList>
-                    <LogOutButton>
-                        <CustomImg src="./media/icons/logout.png" alt=""></CustomImg><span>Logout</span>
-                    </LogOutButton>
-                </Menu>
+                    <ListLogout>
+                    {'Logout'.toLowerCase().includes(inputText.toLowerCase()) &&
+                    <CustomLink to="/Logout">
+                        <Logout><CustomImg src="./media/icons/logout.png" alt=""></CustomImg>Logout</Logout>
+                    </CustomLink>
+                    
+                    }
+                    </ListLogout>
+               </Menu>
             </Wrapper2> 
         </Wrapper>
     );
