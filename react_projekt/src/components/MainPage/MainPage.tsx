@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC , useEffect } from 'react';
 import styled from 'styled-components';
 
 
@@ -15,7 +15,16 @@ import { MainContent } from '../MainContent/MainContent';
 import  { Test }  from '../TestPage/TestPage';
 import { Entities } from '../Entities/Entities';
 import { Profile } from '../Profile/Profile';
+import { useDispatch } from 'react-redux';
+import { getPosts } from '../../actions/postsActions';
+import { getUsers } from '../../actions/usersActions';
+import { getComments } from '../../actions/commentActions';
+import { getPhoto } from '../../actions/photosActions';
 
+type GetPosts = ReturnType<typeof getPosts>
+type GetUsers = ReturnType<typeof getUsers>
+type GetComments = ReturnType<typeof getComments>
+type GetPhoto = ReturnType<typeof getPhoto>
 
 const Wrapper = styled.section`
 `;
@@ -27,6 +36,15 @@ const Content = styled.div`
 `;
 
 const MainPage: FC = () => {
+    
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch<GetPosts>(getPosts());
+        dispatch<GetUsers>(getUsers());
+        dispatch<GetComments>(getComments());
+        dispatch<GetPhoto>(getPhoto());
+    })
+
     return(
         <Router>
             <Wrapper>

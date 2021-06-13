@@ -5,6 +5,13 @@ import { Colors } from '../styleHelpers/Colors';
 import { fontSize } from '../styleHelpers/FontSizes';
 
 import { Link } from "react-router-dom";
+import { IState } from '../../reducers'
+import { useSelector } from 'react-redux';
+import { IUsersReducer } from '../../reducers/usersReducers';
+import { IPhotoReducer } from '../../reducers/photoReducers';
+import { ICommentReducer } from '../../reducers/commentsReducers';
+import { IPostReducer } from '../../reducers/postsReducers';
+import { imageSize } from '../styleHelpers/ImageSize';
 
 const Wrapper = styled.aside `
     flex:2;
@@ -35,9 +42,9 @@ const ImageCard = styled.div `
 `;
 
 const Image = styled.img `
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
+    width: ${imageSize[18]};
+    height: ${imageSize[17]};
+    object-fit: cover;
 `;
 
 const Name = styled.p ` 
@@ -156,14 +163,31 @@ const Link2 = styled(Link) `
 
 
 
-export const LeftMenu: FC = () => {
+ export const LeftMenu: FC = () => {
+
+   
+    const { usersList } = useSelector<IState, IUsersReducer>(state => ({
+        ...state.users
+    }));
+    const { commentList } = useSelector<IState, ICommentReducer>(state => ({
+        ...state.comment
+    }));
+    const { postList } = useSelector<IState, IPostReducer>(state => ({
+        ...state.posts
+    }));
+    const { photoList } = useSelector<IState, IPhotoReducer>(state => ({
+        ...state.photo
+    }));
+
+    if(usersList?.length>0)
+    {
     return(
             <Wrapper>
                 <User>
                     <Header>
                         <ImageCard>
                             <Link2 to="/Profile">
-                            <Image />
+                            <Image src={photoList[1]?.url} alt="img" />
                             </Link2>
                         </ImageCard>
                         <Link2 to="/Profile">
@@ -219,5 +243,12 @@ export const LeftMenu: FC = () => {
                     </List>
                 </Navigator>
             </Wrapper>
-    );
+    )
+    }
+    else{
+        return(<Wrapper/>)
+    }
+    
 };
+
+export default LeftMenu;
