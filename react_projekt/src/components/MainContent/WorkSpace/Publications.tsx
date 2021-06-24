@@ -1,6 +1,13 @@
-import { FC } from 'react';
+import { FC, } from 'react';
 import styled from 'styled-components';
 import { Colors } from '../../styleHelpers/Colors';
+import ReactPaginate from 'react-paginate';
+import { IState } from '../../../reducers'
+import { useSelector } from 'react-redux';
+import { IUsersReducer } from '../../../reducers/usersReducers';
+import { IPhotoReducer } from '../../../reducers/photoReducers';
+import { ICommentReducer } from '../../../reducers/commentsReducers';
+import { IPostReducer } from '../../../reducers/postsReducers';
 
 
 const PublicationsContent = styled.div `
@@ -81,18 +88,30 @@ const LastPublicationsBottom = styled.h1 `
     color: ${Colors.blue};
 `;
 
+
+
 export const Publications: FC = () => {
+
+    const { usersList } = useSelector<IState, IUsersReducer>(state => ({
+        ...state.users
+    }));
+    const { commentList } = useSelector<IState, ICommentReducer>(state => ({
+        ...state.comment
+    }));
+    const { postList } = useSelector<IState, IPostReducer>(state => ({
+        ...state.posts
+    }));
+    const { photoList } = useSelector<IState, IPhotoReducer>(state => ({
+        ...state.photo
+    }));
+
     return(
         <PublicationsContent>
             <LeftImg>
-                <ImgText>
-                <p>
-                    Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit.... and
-                    one more line for the demo
-                </p>
+            <ImgText>{commentList[2]?.name}
+                
                 <p className = "Description">
-                    13.05.2021 <ImgComment src="./media/Lion.jpg" alt = ""/> Dominik Najder
+                    13.05.2021 <ImgComment src={photoList[2]?.url} alt="Profile-img"/>{usersList[2]?.name}
                 </p>
                 </ImgText>
             </LeftImg>

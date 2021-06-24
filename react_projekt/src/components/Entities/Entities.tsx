@@ -1,5 +1,5 @@
 import { FC, useState, ChangeEvent } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Colors } from '../styleHelpers/Colors';
 import { fontSize } from '../styleHelpers/FontSizes';
 import { imageSize } from '../styleHelpers/ImageSize';
@@ -76,7 +76,10 @@ font-weight: bold;
 color:#3a4ea4;
 margin-left: 8px;
 `;
-const Button2 = styled.button`
+const Button2 = styled.button<{ flex: boolean }>`
+${props => props.flex && css`
+color:red;
+`}
 width: 5.5em;
 display: flex;
 align-items: center;
@@ -207,7 +210,7 @@ font-size: ${fontSize[12]};
 font-weight: bold;
 color: ${Colors.lightgrey};
 `;
-
+/*--------*/
 const FullScreenButton = styled.button`
 width: 3em;
 display: flex;
@@ -226,7 +229,7 @@ width: ${imageSize[12]};
 height: ${imageSize[12]};
 margin-left: 10px;
 `;
-
+/*---------*/
 const ShareButton = styled.button`
 width: 3em;
 display: flex;
@@ -251,7 +254,7 @@ font-size: ${fontSize[12]};
 font-weight: bold;
 color: ${Colors.lightgrey};
 `;
-
+/*-----------------------*/
 const ResumeWorkHeaderDiv2 = styled.div`
 width: 60%;
 display: flex;
@@ -276,7 +279,7 @@ height: ${imageSize[12]};
 background-color: ${Colors.white};
 margin-right: 5px;
 `;
-
+/*------------------*/
 const SelectFollowDiv = styled.div`
 display: flex;
 align-items: center;
@@ -303,7 +306,7 @@ const DropdownArrow = styled.img`
 width: ${imageSize[12]};
 height: ${imageSize[12]};
 `;
-
+/*-------------Container-3-----------------*/
 const Container3 = styled.div`
 width: 100%;
 height: 100%;
@@ -351,9 +354,9 @@ font-size: ${fontSize[12]};
 color: ${Colors.leftmenufontcolor};
 margin-top: 2em;
 `;
+/*-------------END-------------------------*/
 
-
-export const Entities: FC = () => {
+const Entities: FC = () => {
 
     const { postList } = useSelector<IState, IPostReducer>(state => ({
         ...state.posts
@@ -365,7 +368,7 @@ export const Entities: FC = () => {
         ...state.users
     }));
 
-   
+    //searcher content
     const [inputText, setInputText] = useState<string>('');
 
     const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -387,7 +390,7 @@ export const Entities: FC = () => {
                                 <IconButton1 src="./media/entities/mosaic.svg" alt="mosaic-img" />
                                 <TextButton1>Mosaic</TextButton1>
                             </Button1>
-                            <Button2>
+                            <Button2 flex={true} type='button'>
                                 <IconButton2 src="./media/entities/list.svg" alt="list-img" />
                                 <TextButton2>List</TextButton2>
                             </Button2>
@@ -714,3 +717,4 @@ export const Entities: FC = () => {
         return (<Wrapper />)
     }
 };
+export default Entities;
