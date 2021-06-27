@@ -9,6 +9,7 @@ import { IUsersReducer } from '../../../reducers/usersReducers';
 import { IPhotoReducer } from '../../../reducers/photoReducers';
 import { ICommentReducer } from '../../../reducers/commentsReducers';
 import { IPostReducer } from '../../../reducers/postsReducers';
+import { Link } from'react-router-dom';
 
 
 const PublicationsContent = styled.div `
@@ -16,6 +17,11 @@ const PublicationsContent = styled.div `
     border-radius: 5px;
     box-shadow: 0px 1px 3px ${Colors.grey2};
     margin: 20px 0px;
+
+    a{
+        text-decoration:none;
+        color: blue;
+    }
 `;
 
 
@@ -73,9 +79,6 @@ const PublicationsText = styled.div `
     margin-left: 10px;
 `;
 
-const Footer = styled.div ` 
-    margin-top: 25px;
-`;
 
 const ArticleProfileDiv = styled.div`
 display:flex;
@@ -175,7 +178,9 @@ export const Publications: FC = () => {
                             </ArticleProfileDiv>
                         </PublicationsText>
                     </LastPublicationsComment>
+                    <Link to="/See more publications">
                     <LastPublicationsBottom>See more publications</LastPublicationsBottom>
+                    </Link>
                 </LastPublicationsContent>
             </LastPublications>
         </PublicationsContent>

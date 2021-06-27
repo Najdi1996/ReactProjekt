@@ -3,8 +3,16 @@ import styled from 'styled-components';
 
 import { Colors } from '../styleHelpers/Colors';
 import { fontSize } from '../styleHelpers/FontSizes';
+import { imageSize } from '../styleHelpers/ImageSize';
 
 import { Link } from "react-router-dom";
+import { IState } from '../../reducers'
+import { useSelector } from 'react-redux';
+import { IPhotoReducer } from '../../reducers/photoReducers';
+
+
+
+
 
 const Wrapper = styled.div `
     position: absolute;
@@ -103,7 +111,12 @@ const AccountItem = styled.li `
     cursor: pointer;
 `;
 
-const UserImg = styled.img ` 
+const UserImg = styled.img `
+width:${imageSize[12]};
+height:${imageSize[12]};
+border:2px solid ${Colors.leftmenufontcolor};
+border-radius:100%;
+margin-left:10px; 
 `;
 
 const Name = styled.p `
@@ -147,6 +160,10 @@ export const ExpandedMenu: FC = () => {
         const text = e.target.value;
         setInputText(text);
     }
+
+    const { photoList } = useSelector<IState, IPhotoReducer>(state => ({
+        ...state.photo
+    }));
     
     return(
         <Wrapper>
@@ -240,7 +257,7 @@ export const ExpandedMenu: FC = () => {
                         <AccountItem>
                         {'See Profile'.toLowerCase().includes(inputText.toLowerCase()) &&
                         <CustomLink to="/Profile">
-                            <UserImg />
+                            <UserImg src={photoList[1]?.url} alt="img"/>
                             <Name>Humberta Swift</Name>
                             <Description>See Profile</Description>
                         </CustomLink>

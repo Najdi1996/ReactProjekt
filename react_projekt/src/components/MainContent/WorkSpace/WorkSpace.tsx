@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Colors } from '../../styleHelpers/Colors';
-import {Link} from'react-router-dom';
+import { Link } from'react-router-dom';
 
 const WorkSpaceContent = styled.div `
     display: block;
@@ -128,6 +128,7 @@ export const WorkSpace: FC = () => {
                    </WorkSpaceCardBottom>
                 </WorkSpaceCard>
                 </Link>
+                <Link to="/Workspace">
                 <WorkSpaceCard>
                    <WorkSpaceCardTop />
                    <WorkSpaceCardCenter>
@@ -147,6 +148,8 @@ export const WorkSpace: FC = () => {
                         <Cardfooter>Last update 2 days ago</Cardfooter>
                    </WorkSpaceCardBottom>
                 </WorkSpaceCard>
+                </Link>
+                <Link to="/Workspace">
                 <WorkSpaceCard>
                    <WorkSpaceCardTop />
                    <WorkSpaceCardCenter>
@@ -166,6 +169,7 @@ export const WorkSpace: FC = () => {
                         <Cardfooter>Last update 2 days ago</Cardfooter>
                    </WorkSpaceCardBottom>
                 </WorkSpaceCard>
+                </Link>
             </WorkSpaceWrapper>
         </WorkSpaceContent>
     );

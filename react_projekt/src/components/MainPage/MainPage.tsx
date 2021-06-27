@@ -101,6 +101,9 @@ const MainPage: FC = () => {
                         <Route path="/Settings">
                             <Test />
                         </Route>
+                        <Route path="/See more publications">
+                            <Test />
+                        </Route>
                         <Route>
                             <MainContent/>
                         </Route>
