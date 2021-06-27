@@ -1,7 +1,8 @@
 import { FC, } from 'react';
 import styled from 'styled-components';
 import { Colors } from '../../styleHelpers/Colors';
-import ReactPaginate from 'react-paginate';
+import { fontSize } from '../../styleHelpers/FontSizes';
+import { imageSize } from '../../styleHelpers/ImageSize';
 import { IState } from '../../../reducers'
 import { useSelector } from 'react-redux';
 import { IUsersReducer } from '../../../reducers/usersReducers';
@@ -17,15 +18,7 @@ const PublicationsContent = styled.div `
     margin: 20px 0px;
 `;
 
-const LeftImg = styled.div `
-    position: relative;
-    background-image: url('./media/tower.jpg');
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-size: 500px;
-    width: 500px;
-    height: 580px;
-`;
+
 
 const ImgText = styled.div `
     position: absolute;
@@ -57,6 +50,9 @@ const LastPublications = styled.div `
 
 const LastPublicationsContent = styled.div ` 
     margin: 15px 0px;
+display:flex;
+margin-left:15px;
+flex-direction:column;
 `;
 
 const LastPublicationsTitle = styled.p ` 
@@ -81,11 +77,32 @@ const Footer = styled.div `
     margin-top: 25px;
 `;
 
+const ArticleProfileDiv = styled.div`
+display:flex;
+flex-direction:row;
+`;
+const ArticleAuthorDate = styled.p`
+color:${Colors.lightgrey};
+font-size:${fontSize[14]};
+`;
+const ArticleAuthorProfileImg = styled.img`
+width:${imageSize[12]};
+height:${imageSize[12]};
+border:2px solid ${Colors.leftmenufontcolor};
+border-radius:100%;
+margin-left:10px;
+`;
+const ArticleAuthorName = styled.p`
+color:${Colors.leftmenufontcolor};
+margin-left:10px;
+font-size:${fontSize[14]};
+`;
 
 const LastPublicationsBottom = styled.h1 `
     margin-top: 30px;
     font-size: 20px;
     color: ${Colors.blue};
+    
 `;
 
 
@@ -105,6 +122,14 @@ export const Publications: FC = () => {
         ...state.photo
     }));
 
+    const LeftImg = styled.div `
+    position: relative;
+    background-image: url('${photoList[1]?.url}');
+    background-size: auto;
+    background-repeat: no-repeat;
+    width:45%;
+`;
+
     return(
         <PublicationsContent>
             <LeftImg>
@@ -119,42 +144,35 @@ export const Publications: FC = () => {
                 <LastPublicationsContent>
                     <LastPublicationsTitle>Latest Publications</LastPublicationsTitle>
                     <LastPublicationsComment>
-                        <ImgPublications src="./media/hands.jpg" alt=""/>
+                        <ImgPublications src={photoList[6]?.url} alt="write-img"/>
                         <PublicationsText>
-                        <p>
-                            Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit.... and
-                            one more line for the demo
-                            <Footer>
-                            <p className="textDecription">17.04.2021 <ImgComment src="./media/Lion.jpg" alt=""/> Dominik Najder</p>
-                            </Footer>
-                        </p>
+                        {postList[2]?.body}
+                        <ArticleProfileDiv>
+                                <ArticleAuthorDate>14.04.2021</ArticleAuthorDate>
+                                <ArticleAuthorProfileImg src={photoList[2]?.url} alt="Profile-img" />
+                                <ArticleAuthorName>{usersList[2]?.name}</ArticleAuthorName>
+                            </ArticleProfileDiv>
                         </PublicationsText>
                     </LastPublicationsComment>
                     <LastPublicationsComment>
-                        <ImgPublications src="./media/hands.jpg" alt=""/>
-                        <PublicationsText>
-                        <p>
-                            Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit.... and
-                            one more line for the demo
-                            <Footer>
-                            <p className="textDecription">17.04.2021 <ImgComment src="./media/Lion.jpg" alt=""/> Dominik Najder</p>
-                            </Footer>
-                        </p>
+                        <ImgPublications src={photoList[6]?.url} alt="write-img"/>
+                        <PublicationsText>{postList[2]?.body}
+                        <ArticleProfileDiv>
+                                <ArticleAuthorDate>14.04.2021</ArticleAuthorDate>
+                                <ArticleAuthorProfileImg src={photoList[2]?.url} alt="Profile-img" />
+                                <ArticleAuthorName>{usersList[2]?.name}</ArticleAuthorName>
+                            </ArticleProfileDiv>
                         </PublicationsText>
                     </LastPublicationsComment>
                     <LastPublicationsComment>
-                        <ImgPublications src="./media/hands.jpg" alt=""/>
+                        <ImgPublications src={photoList[6]?.url} alt="write-img"/>
                         <PublicationsText>
-                        <p>
-                            Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit.... and
-                            one more line for the demo
-                            <Footer>
-                            <p className="textDecription">17.04.2021 <ImgComment src="./media/Lion.jpg" alt=""/> Dominik Najder</p>
-                            </Footer>
-                        </p>
+                        {postList[2]?.body}
+                        <ArticleProfileDiv>
+                                <ArticleAuthorDate>14.04.2021</ArticleAuthorDate>
+                                <ArticleAuthorProfileImg src={photoList[2]?.url} alt="Profile-img" />
+                                <ArticleAuthorName>{usersList[2]?.name}</ArticleAuthorName>
+                            </ArticleProfileDiv>
                         </PublicationsText>
                     </LastPublicationsComment>
                     <LastPublicationsBottom>See more publications</LastPublicationsBottom>

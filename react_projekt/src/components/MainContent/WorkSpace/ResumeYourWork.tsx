@@ -164,6 +164,7 @@ export const ResumeYourWork: FC = () => {
         setInputText(text);
     }
     const ImgWithTtile = styled.div`
+
 display:flex;
 width:30%;
 flex-direction:column;

@@ -1,9 +1,14 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Colors } from '../../styleHelpers/Colors';
+import {Link} from'react-router-dom';
 
 const WorkSpaceContent = styled.div `
     display: block;
+    a{
+        text-decoration:none;
+        color:#000000;
+    }
 `;
 
 const WorkSpaceTitle = styled.p `
@@ -100,8 +105,11 @@ export const WorkSpace: FC = () => {
         <WorkSpaceContent>
             <WorkSpaceTitle>Workspaces</WorkSpaceTitle>
             <WorkSpaceWrapper>
+
+            <Link to="/Workspace">
                 <WorkSpaceCard>
                    <WorkSpaceCardTop />
+                  
                    <WorkSpaceCardCenter>
                        <WorkSpaceCardCenterLeft>
                            <div> <CardIcon2 src = "./media/icons/entities2.png"/></div>
@@ -119,6 +127,7 @@ export const WorkSpace: FC = () => {
                         <Cardfooter>Last update 2 days ago</Cardfooter>
                    </WorkSpaceCardBottom>
                 </WorkSpaceCard>
+                </Link>
                 <WorkSpaceCard>
                    <WorkSpaceCardTop />
                    <WorkSpaceCardCenter>

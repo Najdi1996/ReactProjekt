@@ -1,12 +1,11 @@
 import { FC, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Colors } from '../styleHelpers/Colors';
 import { fontSize } from '../styleHelpers/FontSizes';
 import { imageSize } from '../styleHelpers/ImageSize';
 import { IState } from '../../reducers'
 import { useSelector } from 'react-redux';
 import { IUsersReducer } from '../../reducers/usersReducers';
-import { IPhotoReducer } from '../../reducers/photoReducers';
 import { IPostReducer } from '../../reducers/postsReducers';
 
 const Container3 = styled.div`

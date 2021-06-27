@@ -12,6 +12,7 @@ import ListView from './ListView';
 import EntitiesFilter from './EntitiesFilter';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 /*-------------style-for-all-elements------------*/
+
 const BC = styled.div`
 height:100%;
 width:100%;

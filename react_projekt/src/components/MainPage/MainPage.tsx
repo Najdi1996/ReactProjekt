@@ -15,6 +15,7 @@ import { MainContent } from '../MainContent/MainContent';
 import  { Test }  from '../TestPage/TestPage';
 import  Entities  from '../Entities/Entities';
 import Profile from '../Profile/Profile';
+import WorkNewCard from '../MainContent/WorkNewCard/WorkNewCard';
 import { useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/postsActions';
 import { getUsers } from '../../actions/usersActions';
@@ -57,6 +58,9 @@ const MainPage: FC = () => {
                         </Route>
                         <Route path="/Profile">
                             <Profile />
+                        </Route>
+                        <Route path="/Workspace">
+                            <WorkNewCard />
                         </Route>
                         <Route path="/Ecosystem">
                             <Test />

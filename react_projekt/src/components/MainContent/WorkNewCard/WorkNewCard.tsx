@@ -8,246 +8,164 @@ import ReactPaginate from 'react-paginate';
 import { IState } from '../../../reducers';
 import { useSelector } from 'react-redux';
 import { IUsersReducer } from '../../../reducers/usersReducers';
-import { IPhotoReducer } from '../../../reducers/photoReducers';
-import { ICommentReducer } from '../../../reducers/commentsReducers';
 import { IPostReducer } from '../../../reducers/postsReducers';
-/*----------Wrapper--------------------*/
+
+/*-------------style-for-all-elements------------*/
 const Wrapper = styled.div`
-display:flex;
+display: flex;
 flex-direction:column;
+align-items:center;
 width:90%;
 height:100%;
-Font-size:${fontSize[10]};
+margin-top:1.5em;
+background-color:${Colors.white};
+font-size: ${fontSize[14]};
+box-shadow:2px 2px 10px ${Colors.lightgrey};
 `;
-/*-------------Container-1--------------*/
+const CustomLink = styled(Link)`
+text-decoration:none;
+`;
+/*-------------Container-1--------------------*/
 const Container1 = styled.div`
 display:flex;
-flex-direction:row;
-width:100%;
-height:100%;
-margin-top:2em;
-`;
-/*-----------Img-with-title--------------------*/
-
-const TitleDiv = styled.div`
-display:flex;
-height:3em;
-margin-left:15px;
-`;
-const Title = styled.p`
-color:${Colors.white};
-`;
-const AuthorDiv = styled.div`
-display:flex;
-height:6em;
-margin-left:15px;
-`;
-const AuthorDate = styled.p`
-color:${Colors.white};
-`;
-const AuthorProfileImg = styled.img`
-width:${imageSize[12]};
-height:${imageSize[12]};
-border:2px solid ${Colors.white};
-border-radius:100%;
-margin-left:10px;
-`;
-const AuthorName = styled.p`
-color:${Colors.white};
-margin-left:10px;
-`;
-/*----------Latest-publications------------------------*/
-const LatestPublications = styled.div`
-display:flex;
 flex-direction:column;
-width:70%;
-background-color:${Colors.white};
-`;
-/*---------------------------------------*/
-const HeaderArticleDiv = styled.div`
-display:flex;
-margin-left:15px;
-margin-bottom:10px;
-margin-top:10px;
-`;
-const HeaderArticle = styled.h3`
-font-size:${fontSize[22]};
-color:${Colors.grey1};
-`;
-/*---------------------------------------*/
-const ArticleDiv = styled.div`
-display:flex;
-margin-left:15px;
-flex-direction:column;
-`;
-/*---------------------------------------*/
-const ArticleBox = styled.div`
 width:90%;
-height:12em;
+height:40em;
+margin-top:20px;
+box-shadow: 5px 4px 10px 6px rgba(0,0,0,0.2);
+`;
+const BannerWorkspace = styled.div`
 display:flex;
-flex-direction:row;
+position: relative;
+width:100%;
+height:32em;
+width: 1088px;
+background-image:url("../media/Holding.jpg");
+object-fit: scale-down;
+background-size: 1088px;
+background-position: center;
+background-repeat: no-repeat;
 `;
-const ArticleBoxDivImg = styled.div`
-display:flex;
-`;
-const ArticleBoxImg = styled.img`
-width:${imageSize[21]};
-height:${imageSize[20]};
-`;
-/*---------------------------------------*/
-const ArticleBoxInformation = styled.div`
+const BannerContent = styled.div`
 display:flex;
 flex-direction:column;
+`;
+const BannnerTitleWithIcon = styled.div`
+display:flex;
+flex-direction:row;
+`;
+const BannerDivHelper1 = styled.div`
+display:flex;
+justify-content:flex-start;
+width:24%;
+`;
+const TitleB = styled.span`
+color:${Colors.namesurname};
+font-weight:bold;
+font-size:${fontSize[18]};
+margin-left:4em;
+margin-top:0.8em;
+`;
+const BannerDivHelper2 = styled.div`
+display:flex;
+justify-content:flex-end;
+width:74%;
+`;
+const IconSettingsB = styled.img`
+width:${imageSize[13]};
+height:${imageSize[13]};
+margin-top:0.8em;
+cursor:pointer;
+`;
+const BannerIconWithDescription = styled.div`
+display:flex;
+flex-direction:row;
+`;
+const IconB = styled.img`
+width:${imageSize[15]};
+height:${imageSize[15]};
 margin-left:10px;
 `;
-const ArticleBoxDivText = styled.div`
+const DescriptionB = styled.p`
+color:${Colors.lightgrey};
+margin-top:20px;
+margin-left:2em;
+`;
+/*-------------Container-2--------------------*/
+const Container2 = styled.div`
 display:flex;
-margin-top:10px;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+width:90%;
+height:25em;
+background-color:${Colors.lightgrey};
+margin-top:4em;
+box-shadow: 5px 2px 10px 6px rgba(0,0,0,0.2);
+`;
+const SpanBox = styled.div`
+width:100%;
+display:flex;
+flex-direction:row;
+`;
+const SpanDiv1 = styled.div`
+width:20%;
+display:flex;
+justify-content:flex-start;
+margin-left:5em;
+`;
+const SpanDiv2 = styled.div`
+width:70%;
+display:flex;
+justify-content:flex-end;
+`;
+const Span1 = styled.span`
+color:#8c8f94;
+font-weight:bold;
+`;
+const Span2 = styled.span`
+color:#8c8f94;
+font-weight:bold;
+cursor:pointer;
+`;
+const BoxContainer = styled.div`
+width:100%;
+display:flex;
+flex-direction:row;
+justify-content:space-around;
+`;
+const Box = styled.div`
+width:20em;
+height:15em;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+background-color:${Colors.white};
+border-radius:10px;
+margin-top:1.5em;
+padding:1em;
+`;
+const BoxIcon = styled.img`
+width:${imageSize[14]};
+height:${imageSize[14]};
 margin-bottom:10px;
 `;
-const ArticleBoxText = styled.p`
-font-size:${fontSize[16]};
-`;
-const ArticleProfileDiv = styled.div`
-display:flex;
-flex-direction:row;
-`;
-const ArticleAuthorDate = styled.p`
-color:${Colors.lightgrey};
-font-size:${fontSize[14]};
-`;
-const ArticleAuthorProfileImg = styled.img`
-width:${imageSize[12]};
-height:${imageSize[12]};
-border:2px solid ${Colors.leftmenufontcolor};
-border-radius:100%;
-margin-left:10px;
-`;
-const ArticleAuthorName = styled.p`
-color:${Colors.leftmenufontcolor};
-margin-left:10px;
-font-size:${fontSize[14]};
-`;
-/*---------------------------------------*/
-const ArticleHyperLinkDiv = styled.div`
-display:flex;
-margin-left:15px;
-`;
-const CustomLinkArticle = styled(Link)`
-text-decoration:none;
-color:#3399ff;
+const BoxTitle = styled.span`
+font-size:${fontSize[18]};
 font-weight:bold;
-font-size:${fontSize[16]};
+margin-bottom:10px;
+color:${Colors.black};
 `;
-/*--------Container-2-------------------------*/
-const Container2 = styled.div`
-width:100%;
-height:30em;
-display:flex;
-margin-top:20px;
-flex-wrap:nowrap;
-overflow-x:scroll;
-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
-border-radius:7px;
-    a{
-        text-decoration:none;
-    }
+const BoxDescription = styled.p`
+color:${Colors.leftmenufontcolor};
 `;
-const WorkSpacesContainer = styled.div`
-width:100%;
-height:100%;
-display:flex;
-flex-direction:row;
-`;
-const WorkSpacesMini = styled.div`
-width:300px;
-height:200px;
-background-color:white;
-display:block;
-margin:2px;
-margin-right:20px;
-flex: 0 0 auto;
-border:1px solid lightgray;
-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
-border-radius:7px;
-`;
-const WorkSpacePhoto = styled.div`
-width:100%;
-height:80px;
-border-radius: 5px 5px 0 0;
-background-image: url("../media/workspaces/workspaces.jpg");
-background-size: cover;
-background-position: center;
-`;
-const WorkSpaceCard = styled.div`
-width:40%;
-display: flex;
-    div {
-        width: 75%;
-        background-color: white;
-        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
-        height: 100px;
-        position: relative;
-        top: -40px;
-        text-align: bottom;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: auto;
-        border-radius: 4px;
-    }
-    div > img {
-        width:50%;
-    }
-`;
-const WorkSpaceTitle = styled.div`
-opacity:0.8;
-display:block;
-margin-top:-90px;
-margin-left: 120px;
-color: #0a0909;
-font-size:20px;
-font-weight:600;
-`;
-const WorkSpaceBottom = styled.div`
-margin-top:38px;
-    .contract{
-        opacity:0.9;
-        color:grey;
-        padding-left:13px;
-    }
-    .contract > .First {
-        padding-right:5px;
-        padding-left:5px;
-        width:17px;
-        height:17px;
-    }
-    .contract > .Second{
-        width:20px;
-        height:23px;
-        margin:auto;
-        padding-right:5px;
-        padding-left:5px;
-    }
-`;
-const WorkSpaceBottomTwo = styled.div`
-margin-top:7px;
-    p{
-        color:grey;
-        opacity:0.8;
-        font-size:12px;
-        margin-left:5px;
-    }
-`;
-
-/*-------------Container-3--------------*/
-
+/*-------------Container-3--------------------*/
 const Container3 = styled.div`
 display:flex;
 flex-direction:column;
 width:100%;
 height:100%;
-margin-top:4em;
+margin-top:3em;
 .pagination{
     display:flex;
     flex-direction:row;
@@ -262,12 +180,13 @@ margin-top:4em;
     margin:10px;
 }
 `;
+/*----------header-filter,title,-----------*/
 const ResumeWorkHeaderContainer = styled.div`
 width:100%;
 height:3em;
 display:flex;
 flex-direction:row;
-margin-bottom:12px;
+margin-bottom:2px;
 `;
 const ResumeWorkHeaderDiv1 = styled.div`
 width:20%;
@@ -292,6 +211,7 @@ const InputDiv = styled.div`
 display:flex;
 border:1px solid ${Colors.lightgrey};
 height:2.5em;
+margin-right:8px;
 `;
 const InputFilter = styled.input`
 border:none;
@@ -317,7 +237,6 @@ const FollowImg = styled.img`
 width:${imageSize[15]};
 height:${imageSize[15]};
 margin-right:8px;
-margin-left:8px;
 `;
 const FollowSpan = styled.span`
 color:${Colors.namesurname};
@@ -330,76 +249,236 @@ const DropdownArrow = styled.img`
 width:8px;
 height:8px;
 margin-top:12px;
+margin-right:25px;
 `;
-/*--Resume-work--*/
+/*--------------------Colors---Button---Container----*/
+const ButtonsContainer = styled.div`
+display:flex;
+flex-direction:row;
+justify-content:space-around;
+width:100%;
+height:2em;
+margin-top:2em;
+`;
+/*----------------------*/
+const ButtonDiv1 = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:row;
+width:40px;
+margin-left:10px;
+background-color:#eaecf5;
+box-shadow:2px 0px 3px 0px #a1a5b0;
+cursor:pointer;
+border-radius:4px;
+`;
+const Title1 = styled.span`
+font-size:18px;
+color:#2d429e;
+font-weight:bold;
+`;
+/*----------------------*/
+const ButtonDiv2 = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:row;
+width:80px;
+background-color:#cce5cc;
+box-shadow:2px 0px 3px 0px #a1a5b0;
+cursor:pointer;
+border-radius:4px;
+`;
+const Icon2 = styled.img`
+width:${imageSize[11]};
+`;
+const Title2 = styled.span`
+font-size:18px;
+color:#48a248;
+font-weight:bold;
+margin-left:5px;
+`;
+/*----------------------*/
+const ButtonDiv3 = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:row;
+width:90px;
+background-color:#edf6fa;
+box-shadow:2px 0px 3px 0px #a1a5b0;
+cursor:pointer;
+border-radius:4px;
+`;
+const Icon3 = styled.img`
+width:${imageSize[11]};
+`;
+const Title3 = styled.span`
+font-size:18px;
+color:#2a95c8;
+font-weight:bold;
+margin-left:5px;
+`;
+/*----------------------*/
+const ButtonDiv4 = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:row;
+width:230px;
+background-color:#f2e5c4;
+box-shadow:2px 0px 3px 0px #a1a5b0;
+cursor:pointer;
+border-radius:4px;
+`;
+const Icon4 = styled.img`
+width:${imageSize[11]};
+`;
+const Title4 = styled.span`
+font-size:18px;
+color:#dfbb66;
+font-weight:bold;
+margin-left:5px;
+`;
+/*----------------------*/
+const ButtonDiv5 = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:row;
+width:140px;
+background-color:#cccccc;
+box-shadow:2px 0px 3px 0px #a1a5b0;
+cursor:pointer;
+border-radius:4px;
+`;
+const Icon5 = styled.img`
+width:${imageSize[11]};
+`;
+const Title5 = styled.span`
+font-size:18px;
+color:#6f7483;
+font-weight:bold;
+margin-left:5px;
+`;
+/*----------------------*/
+const ButtonDiv6 = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:row;
+width:80px;
+background-color:#e8e8e8;
+box-shadow:2px 0px 3px 0px #a1a5b0;
+cursor:pointer;
+border-radius:4px;
+`;
+const Icon6 = styled.img`
+width:${imageSize[11]};
+`;
+const Title6 = styled.span`
+font-size:18px;
+color:#8d929f;
+font-weight:bold;
+margin-left:5px;
+`;
+/*----------------------*/
+const ButtonDiv7 = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:row;
+width:120px;
+background-color:#ffffff;
+box-shadow:2px 0px 3px 0px #a1a5b0;
+cursor:pointer;
+border-radius:4px;
+`;
+const Icon7 = styled.img`
+width:${imageSize[11]};
+`;
+const Title7 = styled.span`
+font-size:18px;
+color:#8d929f;
+font-weight:bold;
+margin-left:5px;
+`;
+/*----------------------*/
+const ButtonDiv8 = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:row;
+width:35px;
+background-color:#ffffff;
+box-shadow:2px 0px 3px 0px #a1a5b0;
+cursor:pointer;
+border-radius:4px;
+`;
+const Title8 = styled.span`
+font-size:18px;
+color:#a1a5b0;
+font-weight:bold;
+`;
+/*----------posts-with-pagination--------------------*/
 const ResumeWorkMini = styled.h1`
-    width: 100%;
-    height:10em;
-    background-color:white;
-    border-radius:6px;
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
-    margin-top:20px;
+width: 100%;
+height:10em;
+background-color:white;
+border-radius:6px;
+box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+margin-top:20px;
 `;
 const ResumeWorkTitle = styled.div`
-    font-size:20px;
-    padding-top:10px;
-    padding-left:10px;
-    color:rgb(67,85,168);
-    font-weight:bold;    
+font-size:20px;
+padding-top:10px;
+padding-left:10px;
+color:rgb(67,85,168);
+font-weight:bold;    
 `;
 const ResumeWorkText = styled.p`
-    font-size:15px;
-    color:rgb(148,151,174);
-    padding-top:10px;
-    padding-left:10px;
-    padding-right:10px;
-    padding-bottom: 10px;
-    text-align:justify;
+font-size:15px;
+color:rgb(148,151,174);
+padding-top:10px;
+padding-left:10px;
+padding-right:10px;
+padding-bottom: 10px;
+text-align:justify;
 `;
 const ResumeWorkBottom = styled.span`
-    font-size:12px;
-    color:rgb(148,151,174);
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-left:10px;
-    padding-right:10px;
+font-size:12px;
+color:rgb(148,151,174);
+padding-top:10px;
+padding-bottom:10px;
+padding-left:10px;
+padding-right:10px;
     img{
         width:12px;
         height:12px;
         margin-right:3px;
     }
 `;
-/*------------END----------------------*/
+const LittleSpan = styled.span`
+color:green;
+font-weight:bold;
+`;
 
-const CenterContent: FC = () => {
+/*-------------END-------------------------*/
 
+const Workspace: FC = () => {
     const { usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
-    const { commentList } = useSelector<IState, ICommentReducer>(state => ({
-        ...state.comment
-    }));
     const { postList } = useSelector<IState, IPostReducer>(state => ({
         ...state.posts
-    }));
-    const { photoList } = useSelector<IState, IPhotoReducer>(state => ({
-        ...state.photo
     }));
     const [currentPage, setCurrentPage] = useState<number>(0);
     const handlePageClick = (data: any) => {
         const selected = data.selected;
         setCurrentPage(selected);
     }
-
-    const ImgWithTtile = styled.div`
-display:flex;
-width:30%;
-flex-direction:column;
-background-image: url('${photoList[1]?.url}');
-background-size:cover;
-background-repeat: none;
-justify-content:flex-end;
-`;
+    //searcher content
     const [textInput, setTextInput] = useState("");
 
     const handleChange = (event: any) => {
@@ -424,190 +503,70 @@ justify-content:flex-end;
             <Wrapper>
 
                 <Container1>
+                    <BannerWorkspace />
 
-                    <ImgWithTtile>
-                        <TitleDiv>
-                            <Title>{commentList[2]?.name}</Title>
-                        </TitleDiv>
+                    <BannerContent>
+                        <BannnerTitleWithIcon>
+                            <BannerDivHelper1>
+                                <TitleB>Corporate holdings</TitleB>
+                            </BannerDivHelper1>
+                            <BannerDivHelper2>
+                                <IconSettingsB src="./media/icons/settings.png" alt="settings-icon" />
+                            </BannerDivHelper2>
+                        </BannnerTitleWithIcon>
 
-                        <AuthorDiv>
-                            <AuthorDate> 7, jan 2020</AuthorDate>
-                            <AuthorProfileImg src={photoList[2]?.url} alt="Profile-img" />
-                            <AuthorName>{usersList[2]?.name}</AuthorName>
-                        </AuthorDiv>
-                    </ImgWithTtile>
-
-
-                    <LatestPublications>
-                        <HeaderArticleDiv>
-                            <HeaderArticle>Latest publications</HeaderArticle>
-                        </HeaderArticleDiv>
-
-                        <ArticleDiv>
-
-                            <ArticleBox>
-                                <ArticleBoxDivImg>
-                                    <ArticleBoxImg src={photoList[2]?.url} alt="write-img" />
-                                </ArticleBoxDivImg>
-
-                                <ArticleBoxInformation>
-                                    <ArticleBoxDivText>
-                                        <ArticleBoxText>
-                                            {postList[2]?.body}
-                                        </ArticleBoxText>
-                                    </ArticleBoxDivText>
-                                    <ArticleProfileDiv>
-                                        <ArticleAuthorDate>7 jan 2020</ArticleAuthorDate>
-                                        <ArticleAuthorProfileImg src={photoList[2]?.url} alt="Profile-img" />
-                                        <ArticleAuthorName>{usersList[2]?.name}</ArticleAuthorName>
-                                    </ArticleProfileDiv>
-                                </ArticleBoxInformation>
-                            </ArticleBox>
-
-                            <ArticleBox>
-                                <ArticleBoxDivImg>
-                                    <ArticleBoxImg src={photoList[4]?.url} alt="write-img" />
-                                </ArticleBoxDivImg>
-
-                                <ArticleBoxInformation>
-                                    <ArticleBoxDivText>
-                                        <ArticleBoxText>
-                                            {postList[2]?.body}
-                                        </ArticleBoxText>
-                                    </ArticleBoxDivText>
-                                    <ArticleProfileDiv>
-                                        <ArticleAuthorDate>7 jan 2020</ArticleAuthorDate>
-                                        <ArticleAuthorProfileImg src={photoList[2]?.url} alt="Profile-img" />
-                                        <ArticleAuthorName>{usersList[2]?.name}</ArticleAuthorName>
-                                    </ArticleProfileDiv>
-                                </ArticleBoxInformation>
-                            </ArticleBox>
-
-
-                            <ArticleBox>
-                                <ArticleBoxDivImg>
-                                    <ArticleBoxImg src={photoList[6]?.url} alt="write-img" />
-                                </ArticleBoxDivImg>
-
-                                <ArticleBoxInformation>
-                                    <ArticleBoxDivText>
-                                        <ArticleBoxText>
-                                            {postList[2]?.body}
-                                        </ArticleBoxText>
-                                    </ArticleBoxDivText>
-                                    <ArticleProfileDiv>
-                                        <ArticleAuthorDate>7 jan 2020</ArticleAuthorDate>
-                                        <ArticleAuthorProfileImg src={photoList[2]?.url} alt="Profile-img" />
-                                        <ArticleAuthorName>{usersList[2]?.name}</ArticleAuthorName>
-                                    </ArticleProfileDiv>
-                                </ArticleBoxInformation>
-                            </ArticleBox>
-
-
-                        </ArticleDiv>
-
-                        <ArticleHyperLinkDiv>
-                            <CustomLinkArticle to="./Publications">See more publications</CustomLinkArticle>
-                        </ArticleHyperLinkDiv>
-                    </LatestPublications>
-
+                        <BannerIconWithDescription>
+                            <IconB src="./media/icons/entities.png" alt="banner-icon" />
+                            <DescriptionB>{postList[1]?.body}</DescriptionB>
+                        </BannerIconWithDescription>
+                    </BannerContent>
                 </Container1>
 
-                <HeaderTitle>Workspaces</HeaderTitle>
+
                 <Container2>
+                    <SpanBox>
+                        <SpanDiv1>
+                            <Span1>Start working on corporate matters</Span1>
+                        </SpanDiv1>
+                        <SpanDiv2>
+                            <Span2>Hide</Span2>
+                        </SpanDiv2>
+                    </SpanBox>
 
-                    <WorkSpacesContainer>
-                        <Link to="/Workspace">
-                            <WorkSpacesMini >
-                                <WorkSpacePhoto />
-                                <WorkSpaceCard><div><img src="./media/icons/smallcontract.png" alt="smallcontract" /></div></WorkSpaceCard>
-                                <WorkSpaceTitle>Client contract</WorkSpaceTitle>
-                                <WorkSpaceBottom>
-                                    <p className="contract"><img className="First" src="../media/icons/smallcontract.png" alt="" /> Contract • <img className="Second" src="./media/icons/twopeople.png" alt="" /> 150 users</p>
-                                </WorkSpaceBottom>
-                                <WorkSpaceBottomTwo>
-                                    <p>Last update 2 days ago</p>
-                                </WorkSpaceBottomTwo>
-                            </WorkSpacesMini>
-                        </Link>
 
-                        <Link to="/Workspace">
-                            <WorkSpacesMini >
-                                <WorkSpacePhoto />
-                                <WorkSpaceCard><div><img src="./media/icons/entities.png" alt="entities" /></div></WorkSpaceCard>
-                                <WorkSpaceTitle>Entities</WorkSpaceTitle>
-                                <WorkSpaceBottom>
-                                    <p className="contract"><img className="First" src="../media/icons/smallcontract.png" alt="" /> Contract • <img className="Second" src="./media/icons/twopeople.png" alt="" /> 150 users</p>
-                                </WorkSpaceBottom>
-                                <WorkSpaceBottomTwo>
-                                    <p>Last update 2 days ago</p>
-                                </WorkSpaceBottomTwo>
-                            </WorkSpacesMini>
-                        </Link>
+                    <BoxContainer>
+                        <CustomLink to="/Entities">
+                            <Box>
+                                <BoxIcon src="./media/icons/entities.png" alt="entities-img" />
+                                <BoxTitle>Explore your Entities</BoxTitle>
+                                <BoxDescription>{postList[1]?.body}</BoxDescription>
+                            </Box>
+                        </CustomLink>
 
-                        <Link to="/Workspace">
-                            <WorkSpacesMini >
-                                <WorkSpacePhoto />
-                                <WorkSpaceCard><div><img src="./media/icons/ecosystem.png" alt="ecossytem" /></div></WorkSpaceCard>
-                                <WorkSpaceTitle>Eco System</WorkSpaceTitle>
-                                <WorkSpaceBottom>
-                                    <p className="contract"><img className="First" src="../media/icons/smallcontract.png" alt="" /> Contract • <img className="Second" src="./media/icons/twopeople.png" alt="" /> 150 users</p>
-                                </WorkSpaceBottom>
-                                <WorkSpaceBottomTwo>
-                                    <p>Last update 2 days ago</p>
-                                </WorkSpaceBottomTwo>
-                            </WorkSpacesMini>
-                        </Link>
+                        <CustomLink to="/Test">
+                            <Box>
+                                <BoxIcon src="./media/icons/house2.png" alt="entities-img" />
+                                <BoxTitle>Structure the ownership</BoxTitle>
+                                <BoxDescription>{postList[3]?.body}</BoxDescription>
+                            </Box>
+                        </CustomLink>
 
-                        <Link to="/Workspace">
-                            <WorkSpacesMini >
-                                <WorkSpacePhoto />
-                                <WorkSpaceCard><div><img src="./media/icons/people.png" alt="workspaces" /></div></WorkSpaceCard>
-                                <WorkSpaceTitle>Workspaces</WorkSpaceTitle>
-                                <WorkSpaceBottom>
-                                    <p className="contract"><img className="First" src="../media/icons/smallcontract.png" alt="" /> Contract • <img className="Second" src="./media/icons/twopeople.png" alt="" /> 150 users</p>
-                                </WorkSpaceBottom>
-                                <WorkSpaceBottomTwo>
-                                    <p>Last update 2 days ago</p>
-                                </WorkSpaceBottomTwo>
-                            </WorkSpacesMini>
-                        </Link>
-
-                        <Link to="/Workspace">
-                            <WorkSpacesMini >
-                                <WorkSpacePhoto />
-                                <WorkSpaceCard><div><img src="./media/icons/smallcontract.png" alt="smallcontract" /></div></WorkSpaceCard>
-                                <WorkSpaceTitle>Corporate</WorkSpaceTitle>
-                                <WorkSpaceBottom>
-                                    <p className="contract"><img className="First" src="../media/icons/smallcontract.png" alt="" /> Contract • <img className="Second" src="./media/icons/twopeople.png" alt="" /> 150 users</p>
-                                </WorkSpaceBottom>
-                                <WorkSpaceBottomTwo>
-                                    <p>Last update 2 days ago</p>
-                                </WorkSpaceBottomTwo>
-                            </WorkSpacesMini>
-                        </Link>
-
-                        <Link to="/Workspace">
-                            <WorkSpacesMini >
-                                <WorkSpacePhoto />
-                                <WorkSpaceCard><div><img src="./media/icons/entities.png" alt="entities" /></div></WorkSpaceCard>
-                                <WorkSpaceTitle>Entities</WorkSpaceTitle>
-                                <WorkSpaceBottom>
-                                    <p className="contract"><img className="First" src="../media/icons/smallcontract.png" alt="" /> Contract • <img className="Second" src="./media/icons/twopeople.png" alt="" /> 150 users</p>
-                                </WorkSpaceBottom>
-                                <WorkSpaceBottomTwo>
-                                    <p>Last update 2 days ago</p>
-                                </WorkSpaceBottomTwo>
-                            </WorkSpacesMini>
-                        </Link>
-                    </WorkSpacesContainer>
+                        <CustomLink to="/Test">
+                            <Box>
+                                <BoxIcon src="./media/icons/ecosystem.png" alt="entities-img" />
+                                <BoxTitle>Define the calendar</BoxTitle>
+                                <BoxDescription>{postList[1]?.body}</BoxDescription>
+                            </Box>
+                        </CustomLink>
+                    </BoxContainer>
                 </Container2>
 
 
                 <Container3>
+
                     <ResumeWorkHeaderContainer>
                         <ResumeWorkHeaderDiv1>
-                            <HeaderTitle>Resume your work</HeaderTitle>
+                            <HeaderTitle>Latest Updates</HeaderTitle>
                         </ResumeWorkHeaderDiv1>
                         <ResumeWorkHeaderDiv2>
                             <InputDiv>
@@ -623,17 +582,57 @@ justify-content:flex-end;
                     </ResumeWorkHeaderContainer>
 
 
+                    <ButtonsContainer>
+                        <ButtonDiv1>
+                            <Title1>All</Title1>
+                        </ButtonDiv1>
+
+                        <ButtonDiv2>
+                            <Icon2 src="./media/Workspace/button2.svg" alt="button2" />
+                            <Title2>SAS</Title2>
+                        </ButtonDiv2>
+
+                        <ButtonDiv3>
+                            <Icon3 src="./media/Workspace/button3.svg" alt="button3" />
+                            <Title3>SARL</Title3>
+                        </ButtonDiv3>
+
+                        <ButtonDiv4>
+                            <Icon4 src="./media/Workspace/button4.svg" alt="button4" />
+                            <Title4>Secondary buisness</Title4>
+                        </ButtonDiv4>
+
+                        <ButtonDiv5>
+                            <Icon5 src="./media/Workspace/button5.svg" alt="button5" />
+                            <Title5>Comunities</Title5>
+                        </ButtonDiv5>
+
+                        <ButtonDiv6>
+                            <Icon6 src="./media/Workspace/button6.svg" alt="button6" />
+                            <Title6>POA</Title6>
+                        </ButtonDiv6>
+
+                        <ButtonDiv7>
+                            <Icon7 src="./media/Workspace/button7.svg" alt="button7" />
+                            <Title7>Survey</Title7>
+                        </ButtonDiv7>
+
+                        <ButtonDiv8>
+                            <Title8>...</Title8>
+                        </ButtonDiv8>
+                    </ButtonsContainer>
+
+
                     {filtredRowsList.slice(currentPage, currentPage + 10).map((v) => (
                         <ResumeWorkMini key={v.id}>
                             <ResumeWorkTitle>{v.title}</ResumeWorkTitle>
                             <ResumeWorkText>{v.body}</ResumeWorkText>
                             <ResumeWorkBottom>
-                                <img src="../../media/icons/logout.png" alt=""></img>Subsid.corp  <img src="../../media/icons/bell.png" alt=""></img>Supplier contract + Updated 3 Days ago by John Doe
+                                <img src="../../media/Workspace/button2.svg" alt="entities-svg" /><LittleSpan>SAS</LittleSpan> . Updated 3 Days ago by John Doe
                             </ResumeWorkBottom>
                         </ResumeWorkMini>
-
                     ))}
-                    < ReactPaginate
+                    <ReactPaginate
                         previousLabel={'PREVIOUS'}
                         nextLabel={'NEXT'}
                         breakLabel={'...'}
@@ -649,14 +648,16 @@ justify-content:flex-end;
                         previousClassName={'previous'}
                         nextClassName={'next'}
                     />
-
                 </Container3>
 
-            </Wrapper >
-        )
+
+
+            </Wrapper>
+        );
+
     }
     else {
         return (<Wrapper />)
     }
 };
-export default CenterContent;
+export default Workspace;
